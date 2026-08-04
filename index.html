@@ -264,8 +264,18 @@
       box-shadow: var(--shadow);
     }
     .plan-card--detail { padding: 26px; }
-    .plan-card--detail::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--warm); }
     .plan-card--preview { padding: 24px; background: linear-gradient(145deg, #edf4ec, #f9fbf6); box-shadow: 0 10px 30px rgba(28,65,51,.07); }
+    .plan-card--complete { padding: 0; border-color: #b9d3b8; background: linear-gradient(145deg, #f2f8f1, #fbfdf9); }
+    .card-toggle { padding: 26px; list-style: none; cursor: pointer; user-select: none; }
+    .card-toggle::-webkit-details-marker { display: none; }
+    .card-toggle:focus-visible { outline: 3px solid rgba(79,123,85,.3); outline-offset: -3px; border-radius: 20px; }
+    .plan-card__content { padding: 0 26px 26px; border-top: 1px solid rgba(79,123,85,.15); }
+    .status-wrap { display: grid; justify-items: end; gap: 5px; align-self: center; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; color: #fff; background: #4f7b55; font-size: 12px; font-weight: 900; line-height: 1; }
+    .status-badge::before { content: "✓"; }
+    .toggle-hint { color: var(--muted); font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .toggle-hint::before { content: "내용 보기"; }
+    .plan-card--complete[open] .toggle-hint::before { content: "접기"; }
     .carousel-cards { display: grid; gap: 18px; }
     .carousel-card {
       position: relative;
@@ -345,8 +355,7 @@
       margin: 0;
       padding: 18px 20px;
       border: 0;
-      border-left: 5px solid var(--forest);
-      border-radius: 0 15px 15px 0;
+      border-radius: 15px;
       background: rgba(255,255,255,.74);
       font-size: clamp(20px, 4.8vw, 25px);
       font-weight: 800;
@@ -440,6 +449,9 @@
       .calendar-event--prep { border-color: #b9c9dd; background: #f0f5fc; }
       .calendar-note { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.4; }
       .plan-card--detail, .plan-card--preview, .carousel-card { padding: 21px 18px 22px; border-radius: 20px; }
+      .plan-card--complete { padding: 0; }
+      .plan-card--complete .card-toggle { padding: 21px 18px; }
+      .plan-card--complete .plan-card__content { padding: 0 18px 22px; }
       .brand-lockup { align-items: flex-start; }
       .brand-logo { width: 72px; border-width: 5px; border-radius: 18px; }
       .card-head { grid-template-columns: auto 1fr; }
@@ -466,13 +478,14 @@
       .timeline-cell { padding: 5px 2px; }
       .timeline-bar { padding: 5px 1px; font-size: 8px; }
       .plan-card { box-shadow: none; break-inside: avoid; }
+      details.plan-card--complete:not([open]) > :not(summary) { display: block; }
       .plan-card--detail, .plan-card--preview, .carousel-card { padding: 18px; }
       footer { padding-inline: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- AUTO-GENERATED | SHA256 0e960928596c642643f5032ab0da66bd20a628482c8455227176d28c56781b9e -->
+  <!-- AUTO-GENERATED | SHA256 a6074d20f0412abfda3598902d3f1a68faed2b1f4958912df29f5bebe1f407c7 -->
   <header class="hero" id="top">
     <div class="hero-inner">
       <span class="eyebrow">광고주 컨펌용 · 1차 기획</span>
@@ -501,7 +514,7 @@
   </div>
 
   <main class="content">
-    
+
     <section class="timeline-section" id="timeline" aria-labelledby="timeline-title">
       <header class="timeline-heading">
         <div>
@@ -694,7 +707,7 @@
     <section class="calendar-month" aria-label="7월 일정">
       <h3>7월</h3>
       <div class="calendar-month__items">
-        
+
           <article class="calendar-event calendar-event--prep">
             <time>~ 7/26</time>
             <div class="calendar-event__body">
@@ -706,10 +719,10 @@
             <time>7/27–8/2</time>
             <div class="calendar-event__body">
               <strong>1주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
-                  
+
                 </div>
             </div>
           </article>
@@ -718,15 +731,15 @@
     <section class="calendar-month" aria-label="8월 일정">
       <h3>8월</h3>
       <div class="calendar-month__items">
-        
+
           <article class="calendar-event calendar-event--work">
             <time>8/3–8/9</time>
             <div class="calendar-event__body">
               <strong>2주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
-                  
+
                 </div>
             </div>
           </article>
@@ -734,10 +747,10 @@
             <time>8/10–8/16</time>
             <div class="calendar-event__body">
               <strong>3주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
-                  
+
                 </div>
             </div>
           </article>
@@ -745,10 +758,10 @@
             <time>8/17–8/23</time>
             <div class="calendar-event__body">
               <strong>4주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
-                  
+
                 </div>
             </div>
           </article>
@@ -756,10 +769,10 @@
             <time>8/24–8/30</time>
             <div class="calendar-event__body">
               <strong>5주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
-                  
+
                 </div>
             </div>
           </article>
@@ -768,12 +781,12 @@
     <section class="calendar-month" aria-label="9월 일정">
       <h3>9월</h3>
       <div class="calendar-month__items">
-        
+
           <article class="calendar-event calendar-event--work">
             <time>9/1–9/6</time>
             <div class="calendar-event__body">
               <strong>6주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -784,7 +797,7 @@
             <time>9/7–9/13</time>
             <div class="calendar-event__body">
               <strong>7주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 3건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -795,7 +808,7 @@
             <time>9/14–9/20</time>
             <div class="calendar-event__body">
               <strong>8주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -806,7 +819,7 @@
             <time>9/21–9/27</time>
             <div class="calendar-event__body">
               <strong>9주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -818,12 +831,12 @@
     <section class="calendar-month" aria-label="10월 일정">
       <h3>10월</h3>
       <div class="calendar-month__items">
-        
+
           <article class="calendar-event calendar-event--work">
             <time>9/28–10/4</time>
             <div class="calendar-event__body">
               <strong>10주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -834,7 +847,7 @@
             <time>10/5–10/11</time>
             <div class="calendar-event__body">
               <strong>11주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -845,7 +858,7 @@
             <time>10/12–10/18</time>
             <div class="calendar-event__body">
               <strong>12주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 2건</span>
@@ -856,7 +869,7 @@
             <time>10/19–10/22</time>
             <div class="calendar-event__body">
               <strong>13주차</strong>
-              
+
                 <div class="calendar-counts">
                   <span class="calendar-count calendar-count--reels">릴스 2건</span>
                   <span class="calendar-count calendar-count--carousels">캐러셀 1건</span>
@@ -875,14 +888,16 @@
         <p>후킹 문구부터 전체 나레이션과 자료 기획까지 확인하는 단계입니다.</p>
       </header>
       <div class="cards">
-    <article class="plan-card plan-card--detail" id="plan-1">
-      <header class="card-head">
+    <details class="plan-card plan-card--detail plan-card--complete" id="plan-1">
+      <summary class="card-head card-toggle">
         <span class="number-badge">01</span>
         <div class="card-heading">
           <span class="type-label">기획안</span>
           <h3>부모님 선물 추천 5가지</h3>
         </div>
-      </header>
+        <span class="status-wrap"><strong class="status-badge">완료</strong><span class="toggle-hint"></span></span>
+      </summary>
+      <div class="plan-card__content">
       <div class="hook-box">
         <span>후킹 문구</span>
         <strong>부모님 선물로 건강식품부터 찾으셨다면, 잠깐만 멈추세요.</strong>
@@ -897,7 +912,6 @@
 <p>넷째, 같이 걷고 식사하는 시간을 선물하는 것.</p>
 <p>다섯째, 혼자 준비하고 정리하기 쉬운 건강기기.</p>
 <p>힐링숲라파도 제품보다 부모님의 생활에 실제로 들어갈 수 있는지를 먼저 봅니다.</p>
-<p>댓글 달아주시면, &quot;부모님 선물 체크리스트&quot; 보내드릴게요.</p>
       </section>
       <div class="support-grid">
         <div class="support-item">
@@ -908,21 +922,20 @@
           <span>캡션</span>
           <p>부모님 선물은 가격보다 실제 생활에서 계속 쓰실 수 있는지가 먼저입니다.</p>
         </div>
-        <div class="support-item support-item--dm">
-          <span>댓글 자동 DM</span>
-          <p>부모님 건강 선물 체크리스트</p>
-        </div>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="plan-card plan-card--detail" id="plan-2">
-      <header class="card-head">
+    <details class="plan-card plan-card--detail plan-card--complete" id="plan-2">
+      <summary class="card-head card-toggle">
         <span class="number-badge">02</span>
         <div class="card-heading">
           <span class="type-label">기획안</span>
           <h3>하루 종일 앉아 있었다면, 바로 눕기 전 3분</h3>
         </div>
-      </header>
+        <span class="status-wrap"><strong class="status-badge">완료</strong><span class="toggle-hint"></span></span>
+      </summary>
+      <div class="plan-card__content">
       <div class="hook-box">
         <span>후킹 문구</span>
         <strong>하루 종일 앉아 있다가 집에 와서 바로 누우시나요?</strong>
@@ -935,8 +948,6 @@
 <p>그다음 집 안을 가볍게 걸으며 오래 유지한 자세에서 벗어납니다.</p>
 <p>마지막으로 샤워나 편안한 족욕처럼 몸이 쉴 신호를 만들어주세요.</p>
 <p>거창한 운동보다 매일 반복되는 3분이 오래갑니다.</p>
-<p>퇴근 후 3분 루틴표가 필요하면 아무 댓글이나 남겨주세요.</p>
-<p>DM으로 보내드릴게요.</p>
       </section>
       <div class="support-grid">
         <div class="support-item">
@@ -947,21 +958,20 @@
           <span>캡션</span>
           <p>하루 종일 앉아 있었다면 바로 눕기 전 3분의 순서부터 바꿔보세요.</p>
         </div>
-        <div class="support-item support-item--dm">
-          <span>댓글 자동 DM</span>
-          <p>퇴근 후 3분 건강 루틴표</p>
-        </div>
       </div>
-    </article>
+      </div>
+    </details>
 
-    <article class="plan-card plan-card--detail" id="plan-3">
-      <header class="card-head">
+    <details class="plan-card plan-card--detail plan-card--complete" id="plan-3">
+      <summary class="card-head card-toggle">
         <span class="number-badge">03</span>
         <div class="card-heading">
           <span class="type-label">기획안</span>
           <h3>평생 가는 건강 습관의 3가지 조건</h3>
         </div>
-      </header>
+        <span class="status-wrap"><strong class="status-badge">완료</strong><span class="toggle-hint"></span></span>
+      </summary>
+      <div class="plan-card__content">
       <div class="hook-box">
         <span>후킹 문구</span>
         <strong>건강을 위해 불편함을 참고 있다면, 그 습관은 오래 못 갑니다.</strong>
@@ -974,8 +984,6 @@
 <p>둘째, 눈에 보여서 바로 시작할 수 있어야 합니다.</p>
 <p>셋째, 끝난 뒤 기분이 좋아야 합니다.</p>
 <p>운동이든 산책이든 족욕이든 이 세 가지가 맞아야 내 생활이 됩니다.</p>
-<p>내 습관을 점검할 체크리스트가 필요하면 아무 댓글이나 남겨주세요.</p>
-<p>DM으로 보내드릴게요.</p>
       </section>
       <div class="support-grid">
         <div class="support-item">
@@ -986,12 +994,9 @@
           <span>캡션</span>
           <p>오래가는 건강 습관은 힘든 습관이 아니라 다시 하기 쉬운 습관입니다.</p>
         </div>
-        <div class="support-item support-item--dm">
-          <span>댓글 자동 DM</span>
-          <p>건강 습관 3가지 점검표</p>
-        </div>
       </div>
-    </article>
+      </div>
+    </details>
 
     <article class="plan-card plan-card--detail" id="plan-4">
       <header class="card-head">
@@ -1000,6 +1005,7 @@
           <span class="type-label">기획안</span>
           <h3>체중보다 먼저 기록할 건강 숫자 3가지</h3>
         </div>
+
       </header>
       <div class="hook-box">
         <span>후킹 문구</span>
@@ -1008,14 +1014,12 @@
       <section class="script-block" aria-label="나레이션">
         <h4>나레이션</h4>
         <p>저도 60대가 되고 보니, 체중 하나보다 매일 어떻게 생활했는지를 더 자주 보게 됩니다.</p>
-<p>그래서 저는 이 세 숫자를 기록합니다.</p>
-<p>첫째, 어젯밤 실제로 잔 시간.</p>
-<p>둘째, 오늘 가장 오래 앉아 있었던 시간.</p>
-<p>셋째, 오늘 가볍게라도 걸은 시간.</p>
+<p>그래서 저는 체중 대신 생활을 보여주는 세 숫자를 기록합니다.</p>
+<p>아침에는 어젯밤 실제로 잔 시간을 적고,</p>
+<p>낮에는 한 번에 얼마나 오래 앉아 있었는지 봅니다.</p>
+<p>저녁에는 가볍게라도 걸은 시간을 남깁니다.</p>
 <p>완벽하게 지키려 하지 말고 일주일만 적어보세요.</p>
 <p>내 생활에서 먼저 바꿀 한 가지가 눈에 보이기 시작합니다.</p>
-<p>7일 건강 기록표가 필요하면 아무 댓글이나 남겨주세요.</p>
-<p>DM으로 보내드릴게요.</p>
       </section>
       <div class="support-grid">
         <div class="support-item">
@@ -1025,10 +1029,6 @@
         <div class="support-item support-item--caption">
           <span>캡션</span>
           <p>체중 하나보다 수면·앉은 시간·걷는 시간을 함께 기록해보세요.</p>
-        </div>
-        <div class="support-item support-item--dm">
-          <span>댓글 자동 DM</span>
-          <p>7일 건강 생활 기록표</p>
         </div>
       </div>
     </article>
@@ -1040,6 +1040,7 @@
           <span class="type-label">기획안</span>
           <h3>부모님과 통화할 때 꼭 물어볼 4가지</h3>
         </div>
+
       </header>
       <div class="hook-box">
         <span>후킹 문구</span>
@@ -1048,13 +1049,9 @@
       <section class="script-block" aria-label="나레이션">
         <h4>나레이션</h4>
         <p>저 같은 부모 세대는 &quot;괜찮으세요?&quot;라고 물으면 대부분 그냥 괜찮다고 답합니다.</p>
-<p>그래서 자녀분들이 이 네 가지를 구체적으로 물어보시면 좋겠습니다.</p>
-<p>첫째, 오늘 식사는 잘하셨는지.</p>
-<p>둘째, 어젯밤 잠은 편하게 주무셨는지.</p>
-<p>셋째, 오늘 밖에 나가 걷거나 움직이셨는지.</p>
-<p>넷째, 새롭게 불편한 곳은 없는지.</p>
-<p>부모님 안부 질문 카드가 필요하면 아무 댓글이나 남겨주세요.</p>
-<p>DM으로 보내드릴게요.</p>
+<p>그래서 &quot;오늘 식사는 뭐 드셨어요?&quot;처럼 구체적으로 물어보시면 더 좋습니다.</p>
+<p>어젯밤 잠은 편했는지, 오늘 밖에 나가 걷거나 움직였는지, 좋은 일은 뭐가 있었는지도 자연스럽게 이어서 물어보세요.</p>
+<p>마지막에는 새롭게 불편한 곳이 없는지 확인하면 막연한 안부보다 생활의 변화를 더 잘 들을 수 있습니다.</p>
       </section>
       <div class="support-grid">
         <div class="support-item">
@@ -1064,10 +1061,6 @@
         <div class="support-item support-item--caption">
           <span>캡션</span>
           <p>부모님 안부는 식사·수면·움직임·새로운 불편함으로 구체적으로 물어보세요.</p>
-        </div>
-        <div class="support-item support-item--dm">
-          <span>댓글 자동 DM</span>
-          <p>부모님 건강 안부 질문 카드</p>
         </div>
       </div>
     </article></div>
@@ -1085,18 +1078,18 @@
         <span class="number-badge number-badge--soft">06</span>
         <div class="card-heading">
           <span class="type-label type-label--preview">주제</span>
-          <h3>69세 대표가 한 제품을 10년 동안 소개한 이유</h3>
+          <h3>아내가 다시 웃던 날, 제 10년이 시작됐습니다</h3>
         </div>
       </header>
       <div class="preview-hook">
         <span>후킹 문구</span>
-        <blockquote>69세 대표가 10년 동안 한 제품만 소개한 데는 가족 이야기 하나가 있습니다.</blockquote>
+        <blockquote>아내가 다시 웃던 날, 제 10년이 시작됐습니다.</blockquote>
       </div>
       <div class="preview-detail">
         <span>전개 방향</span>
-        <p>아내의 건강을 챙기고 싶어 제품을 찾기 시작한 과정 → 직접 알아보고 사용하며 세운 기준 → 10년 동안 상담을 이어온 이유. 마지막에는 대표 이야기를 한 장으로 정리한 자료를 아무 댓글 자동 DM으로 제공</p>
+        <p>아내의 건강이 힘들었던 시기 → 회복 과정에서 족욕이 부부의 하루를 함께 마무리하는 시간이 된 경험 → 기계가 아니라 가족과 다시 누리는 평범한 하루를 전하고 싶었다는 깨달음 → 가족에게도 권할 수 있는지 묻는 10년의 원칙</p>
       </div>
-      <div class="materials-line"><span>활용 자료</span>(대표 인터뷰), (부부 과거 사진), (제품 사용 장면)</div>
+      <div class="materials-line"><span>활용 자료</span>대표 인터뷰, 부부 사진 또는 함께 걷는 장면, 제품을 준비하는 손, 현재의 일상 장면</div>
     </article>
 
     <article class="plan-card plan-card--preview" id="plan-7">
@@ -1104,18 +1097,18 @@
         <span class="number-badge number-badge--soft">07</span>
         <div class="card-heading">
           <span class="type-label type-label--preview">주제</span>
-          <h3>건강기기 인증서에서 꼭 볼 3곳</h3>
+          <h3>건강기기, 왜 며칠 쓰고 멈추게 될까</h3>
         </div>
       </header>
       <div class="preview-hook">
         <span>후킹 문구</span>
-        <blockquote>건강기기 인증 마크, 이 세 곳을 안 보면 다른 제품 자료일 수도 있습니다.</blockquote>
+        <blockquote>건강기기, 비싸게 사놓고 며칠 만에 안 쓰게 되는 이유는 따로 있습니다.</blockquote>
       </div>
       <div class="preview-detail">
         <span>전개 방향</span>
-        <p>첫째 발급기관, 둘째 제품명과 모델, 셋째 인증 범위를 실제 자료에서 확대해 확인. 인증서 확인 카드를 아무 댓글 자동 DM으로 제공</p>
+        <p>기능 부족보다 번거로운 준비와 정리가 사용을 막는 이유 → 구매 전 실제 사용 과정을 확인하는 법 → 오늘도 손이 가는 제품이 좋은 제품이라는 결론</p>
       </div>
-      <div class="materials-line"><span>활용 자료</span>(실제 인증서 확대 장면)</div>
+      <div class="materials-line"><span>활용 자료</span>방치된 건강기기, 제품을 꺼내고 설치하는 장면, 물 준비와 사용 후 세척, 손쉽게 다시 사용하는 장면</div>
     </article>
 
     <article class="plan-card plan-card--preview" id="plan-8">
@@ -1123,18 +1116,18 @@
         <span class="number-badge number-badge--soft">08</span>
         <div class="card-heading">
           <span class="type-label type-label--preview">주제</span>
-          <h3>건강기기 설명이 어려울 때 물어볼 3가지</h3>
+          <h3>손님에게 사지 말라고 말하는 대표</h3>
         </div>
       </header>
       <div class="preview-hook">
         <span>후킹 문구</span>
-        <blockquote>설명을 들어도 무슨 말인지 모르겠다면, 이 세 문장만 물어보세요.</blockquote>
+        <blockquote>저는 손님에게 건강기기를 사지 말라고 말할 때가 있습니다.</blockquote>
       </div>
       <div class="preview-detail">
         <span>전개 방향</span>
-        <p>첫째 어떤 부품이나 기능을 말하는지, 둘째 어떤 조건에서 확인한 결과인지, 셋째 내 생활에서는 무엇을 어떻게 사용하면 되는지 질문. 상담 질문 카드를 아무 댓글 자동 DM으로 제공</p>
+        <p>제품보다 생활 패턴과 사용 환경을 먼저 듣는 상담 방식 → 맞지 않으면 구매를 권하지 않는 이유 → 많이 파는 대표보다 오래 믿을 수 있는 상담자로 남고 싶은 철학</p>
       </div>
-      <div class="materials-line"><span>활용 자료</span>(제품 전체·기능별 근접 장면)</div>
+      <div class="materials-line"><span>활용 자료</span>대표 인터뷰, 실제 상담 장면, 메모하는 손, 고객의 사용 공간을 함께 확인하는 장면</div>
     </article>
 
     <article class="plan-card plan-card--preview" id="plan-9">
@@ -1142,18 +1135,18 @@
         <span class="number-badge number-badge--soft">09</span>
         <div class="card-heading">
           <span class="type-label type-label--preview">주제</span>
-          <h3>건강기기 숫자, 클수록 좋다고 믿으면 안 되는 이유</h3>
+          <h3>족욕할 때 물은 어디까지 받아야 할까</h3>
         </div>
       </header>
       <div class="preview-hook">
         <span>후킹 문구</span>
-        <blockquote>큰 숫자 하나로 건강기기를 고르면 중요한 조건을 놓칩니다.</blockquote>
+        <blockquote>족욕할 때 물을 많이 받을수록 좋다고 생각하셨다면, 지금 멈추세요.</blockquote>
       </div>
       <div class="preview-detail">
         <span>전개 방향</span>
-        <p>숫자가 나온 과정·물 상태·작동 시간·측정 장비를 같은 화면에서 확인하고, 제품 수치와 몸의 변화를 구분. 숫자 확인표를 아무 댓글 자동 DM으로 제공</p>
+        <p>제품 설명서의 권장 수위선 → 물이 넘치지 않고 편안한 자세 → 정해진 사용 시간 → 불편하면 즉시 중단</p>
       </div>
-      <div class="materials-line"><span>활용 자료</span>(측정 전후 장면)</div>
+      <div class="materials-line"><span>활용 자료</span>제품·설명 자료와 촬영 장면</div>
     </article>
 
     <article class="plan-card plan-card--preview" id="plan-10">
@@ -1161,18 +1154,18 @@
         <span class="number-badge number-badge--soft">10</span>
         <div class="card-heading">
           <span class="type-label type-label--preview">주제</span>
-          <h3>작동 전후 비교에서 꼭 같아야 할 4가지</h3>
+          <h3>좋은 건강기기보다 나에게 맞는 건강기기</h3>
         </div>
       </header>
       <div class="preview-hook">
         <span>후킹 문구</span>
-        <blockquote>전후 숫자가 달라졌다는 화면, 같은 조건인지 안 보면 비교가 아닙니다.</blockquote>
+        <blockquote>건강기기 살 때 제품부터 보면 실패합니다.</blockquote>
       </div>
       <div class="preview-detail">
         <span>전개 방향</span>
-        <p>첫째 같은 물, 둘째 같은 양, 셋째 같은 작동 시간, 넷째 같은 측정 장비인지 확인하고 제품 측정 결과와 인체 효과를 구분. 전후 비교 체크카드를 아무 댓글 자동 DM으로 제공</p>
+        <p>제품보다 내 몸과 생활을 먼저 봐야 하는 이유 → 불편·공간·관리·사용 빈도 확인 → 남에게 좋은 제품과 내게 도움 되는 제품의 차이</p>
       </div>
-      <div class="materials-line"><span>활용 자료</span>(작동 전후 측정 화면)</div>
+      <div class="materials-line"><span>활용 자료</span>상담 장면, 제품 설치 공간, 물 준비와 사용 후 정리, 설명서와 주의사항 확인 장면</div>
     </article></div>
     </section>
 
@@ -1197,7 +1190,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 부모님이 실제로 원하시는지 묻는다. 둘째, 혼자 사용할 수 있는지 본다. 셋째, 집 안에 둘 자리를 확인한다. 넷째, 준비와 관리가 쉬운지 살핀다. 다섯째, 문제가 생겼을 때 물어볼 곳이 있는지 확인한다.</p>
+        <p>부모님이 실제로 원하시는지 묻는다. 혼자 사용할 수 있는지 본다. 집 안에 둘 자리를 확인한다. 준비와 관리가 쉬운지 살핀다. 문제가 생겼을 때 물어볼 곳이 있는지 확인한다.</p>
       </div>
     </article>
 
@@ -1215,7 +1208,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 물 한 잔을 마신다. 둘째, 굳은 자세에서 벗어나 가볍게 걷는다. 셋째, 목과 어깨 힘을 뺀다. 넷째, 샤워나 편안한 족욕으로 쉬는 신호를 만든다. 다섯째, 잠들기 전 화면을 내려놓는다.</p>
+        <p>물 한 잔을 마신다. 굳은 자세에서 벗어나 가볍게 걷는다. 목과 어깨 힘을 뺀다. 샤워나 편안한 족욕으로 쉬는 신호를 만든다. 잠들기 전 화면을 내려놓는다.</p>
       </div>
     </article>
 
@@ -1233,7 +1226,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 최근 식사량이 달라졌는지. 둘째, 잠드는 시간과 자는 시간이 어떤지. 셋째, 걷거나 계단을 오를 때 달라진 점이 있는지. 넷째, 새롭게 불편한 곳이 있는지. 다섯째, 복용 중인 약이 무엇인지. 여섯째, 최근 받은 검사와 치료가 있는지. 일곱째, 의사에게 꼭 묻고 싶은 것이 무엇인지 정리한다.</p>
+        <p>최근 식사량이 달라졌는지. 잠드는 시간과 자는 시간이 어떤지. 걷거나 계단을 오를 때 달라진 점이 있는지. 새롭게 불편한 곳이 있는지. 복용 중인 약이 무엇인지. 최근 받은 검사와 치료가 있는지. 의사에게 꼭 묻고 싶은 것이 무엇인지 정리한다.</p>
       </div>
     </article>
 
@@ -1251,7 +1244,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 식사를 거르지 않았는지. 둘째, 물을 챙겨 마셨는지. 셋째, 한 번이라도 밖에 나가 움직였는지. 넷째, 오래 같은 자세로 있지는 않았는지. 다섯째, 잠들기 전 오늘의 불편함을 기록했는지 확인한다.</p>
+        <p>식사를 거르지 않았는지. 물을 챙겨 마셨는지. 한 번이라도 밖에 나가 움직였는지. 오래 같은 자세로 있지는 않았는지. 잠들기 전 오늘의 불편함을 기록했는지 확인한다.</p>
       </div>
     </article>
 
@@ -1269,7 +1262,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 1분 안에 시작할 수 있게 줄인다. 둘째, 매일 하는 행동 뒤에 붙인다. 셋째, 필요한 물건을 눈에 보이게 둔다. 넷째, 성공 여부를 한 칸으로 기록한다.</p>
+        <p>1분 안에 시작할 수 있게 줄인다. 매일 하는 행동 뒤에 붙인다. 필요한 물건을 눈에 보이게 둔다. 성공 여부를 한 칸으로 기록한다.</p>
       </div>
     </article>
 
@@ -1287,7 +1280,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째부터 셋째는 식사·물·수면을 묻는다. 넷째부터 여섯째는 걷기·외출·약 복용을 확인한다. 일곱째부터 아홉째는 새 불편함·기분·최근 일정의 변화를 묻는다. 열째는 이번 주 함께 도울 일을 정한다.</p>
+        <p>처음 세 질문은 식사·물·수면을 묻는다. 그다음 세 질문은 걷기·외출·약 복용을 확인한다. 마지막 세 질문은 새 불편함·기분·최근 일정의 변화를 묻는다. 끝으로 이번 주 함께 도울 일을 정한다.</p>
       </div>
     </article>
 
@@ -1305,7 +1298,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 자주 머무는 곳마다 물을 둔다. 둘째, 작은 컵으로 부담을 낮춘다. 셋째, 기상·식사처럼 이미 하는 행동과 연결한다. 넷째, 마신 횟수만 간단히 표시한다. 다섯째, 개인의 건강 상태에 따른 섭취 제한이 있다면 의료진 안내를 우선한다.</p>
+        <p>자주 머무는 곳마다 물을 둔다. 작은 컵으로 부담을 낮춘다. 기상·식사처럼 이미 하는 행동과 연결한다. 마신 횟수만 간단히 표시한다. 개인의 건강 상태에 따른 섭취 제한이 있다면 의료진 안내를 우선한다.</p>
       </div>
     </article>
 
@@ -1323,7 +1316,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 일정한 간격으로 자리에서 일어난다. 둘째, 먼 곳을 보며 화면에서 눈을 뗀다. 셋째, 물을 마신다. 넷째, 굳은 자세를 편하게 바꾼다. 다섯째, 다음 휴식 시간을 미리 정한다.</p>
+        <p>일정한 간격으로 자리에서 일어난다. 먼 곳을 보며 화면에서 눈을 뗀다. 물을 마신다. 굳은 자세를 편하게 바꾼다. 다음 휴식 시간을 미리 정한다.</p>
       </div>
     </article>
 
@@ -1341,7 +1334,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 늦은 시간의 과식을 줄인다. 둘째, 밝은 화면을 오래 보지 않는다. 셋째, 침대에서 일을 이어가지 않는다. 넷째, 다음 날 걱정거리를 메모로 내려놓는다. 다섯째, 매일 비슷한 시간에 쉴 준비를 시작한다.</p>
+        <p>늦은 시간의 과식을 줄인다. 밝은 화면을 오래 보지 않는다. 침대에서 일을 이어가지 않는다. 다음 날 걱정거리를 메모로 내려놓는다. 매일 비슷한 시간에 쉴 준비를 시작한다.</p>
       </div>
     </article>
 
@@ -1359,7 +1352,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 함께 걷는다. 둘째, 식사 시간을 챙긴다. 셋째, 물 마시는 시간을 만든다. 넷째, 병원 일정을 정리한다. 다섯째, 집 안 이동 동선을 살핀다. 여섯째, 주기적으로 구체적인 안부를 묻는다. 일곱째, 혼자 하기 어려운 일을 하나씩 돕는다.</p>
+        <p>함께 걷는다. 식사 시간을 챙긴다. 물 마시는 시간을 만든다. 병원 일정을 정리한다. 집 안 이동 동선을 살핀다. 주기적으로 구체적인 안부를 묻는다. 혼자 하기 어려운 일을 하나씩 돕는다.</p>
       </div>
     </article>
 
@@ -1377,7 +1370,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 사용할 자리가 있는지. 둘째, 전원과 물을 편하게 쓸 수 있는지. 셋째, 부모님이 혼자 조작할 수 있는지. 넷째, 세척과 보관이 쉬운지. 다섯째, 사용법과 문의처가 분명한지 확인한다.</p>
+        <p>사용할 자리가 있는지. 전원과 물을 편하게 쓸 수 있는지. 부모님이 혼자 조작할 수 있는지. 세척과 보관이 쉬운지. 사용법과 문의처가 분명한지 확인한다.</p>
       </div>
     </article>
 
@@ -1395,7 +1388,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 누구에게나 좋다는 말. 둘째, 단번에 바뀐다는 말. 셋째, 부작용이 전혀 없다는 말. 넷째, 한 가지 경험을 모두에게 적용하는 말. 다섯째, 출처 없이 숫자만 강조하는 말. 여섯째, 치료를 대신할 수 있다는 말은 근거와 공식 안내를 다시 확인한다.</p>
+        <p>누구에게나 좋다는 말. 단번에 바뀐다는 말. 부작용이 전혀 없다는 말. 한 가지 경험을 모두에게 적용하는 말. 출처 없이 숫자만 강조하는 말. 치료를 대신할 수 있다는 말은 근거와 공식 안내를 다시 확인한다.</p>
       </div>
     </article>
 
@@ -1413,7 +1406,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 언제 시작됐는지. 둘째, 어디가 불편한지. 셋째, 얼마나 자주 나타나는지. 넷째, 무엇을 할 때 심해지거나 나아지는지. 다섯째, 복용 중인 약과 최근 변화를 함께 적는다.</p>
+        <p>언제 시작됐는지. 어디가 불편한지. 얼마나 자주 나타나는지. 무엇을 할 때 심해지거나 나아지는지. 복용 중인 약과 최근 변화를 함께 적는다.</p>
       </div>
     </article>
 
@@ -1431,7 +1424,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째, 수면 시간을 적는다. 둘째, 식사 여부를 표시한다. 셋째, 물 마신 횟수를 적는다. 넷째, 걸은 시간을 기록한다. 다섯째, 새롭게 불편한 점을 한 줄로 남긴다. 일주일 뒤 가장 자주 빠진 한 가지만 골라 함께 바꾼다.</p>
+        <p>수면 시간을 적는다. 식사 여부를 표시한다. 물 마신 횟수를 적는다. 걸은 시간을 기록한다. 새롭게 불편한 점을 한 줄로 남긴다. 일주일 뒤 가장 자주 빠진 한 가지만 골라 함께 바꾼다.</p>
       </div>
     </article>
 
@@ -1449,7 +1442,7 @@
       </div>
       <div class="carousel-plan">
         <span>상세 내용</span>
-        <p>첫째 주에는 현재 생활을 기록한다. 둘째 주에는 가장 쉬운 습관 하나를 시작한다. 셋째 주에는 가족과 함께할 시간을 정한다. 넷째 주에는 계속할 것과 바꿀 것을 고른다. 마지막에는 다음 달 한 가지 목표만 남긴다.</p>
+        <p>첫 주에는 현재 생활을 기록한다. 다음 주에는 가장 쉬운 습관 하나를 시작한다. 그다음 주에는 가족과 함께할 시간을 정한다. 마지막 주에는 계속할 것과 바꿀 것을 고른다. 마지막에는 다음 달 한 가지 목표만 남긴다.</p>
       </div>
     </article></div>
     </section>
