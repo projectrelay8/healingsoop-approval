@@ -96,7 +96,7 @@
       width: min(100%, 860px);
       margin: 0 auto;
       padding: 9px;
-      display: flex;
+      display: grid;
       gap: 7px;
       border: 1px solid rgba(217,226,216,.9);
       border-radius: 16px;
@@ -104,11 +104,12 @@
       box-shadow: 0 9px 28px rgba(28,65,51,.10);
       backdrop-filter: blur(14px);
       pointer-events: auto;
-      overflow-x: auto;
     }
+    .toolbar-row { display: flex; gap: 7px; min-width: 0; }
+    .toolbar-row a { flex: 1 1 0; min-width: 0; text-align: center; }
     .toolbar a, .toolbar button {
       min-height: 44px;
-      padding: 10px 14px;
+      padding: 10px 8px;
       border: 0;
       border-radius: 11px;
       color: var(--ink);
@@ -378,7 +379,17 @@
       .hero { padding-inline: 19px; }
       .content { padding-inline: 13px; }
       .toolbar-wrap { padding-inline: 10px; }
-      .toolbar button { display: grid; }
+      .toolbar { padding: 7px; gap: 5px; }
+      .toolbar-row { gap: 4px; }
+      .toolbar a { min-height: 40px; padding: 9px 2px; font-size: 13.5px; letter-spacing: -.02em; }
+      .toolbar button { display: grid; flex-basis: 40px; width: 40px; min-height: 40px; }
+    }
+    @media (max-width: 380px) {
+      .toolbar-wrap { padding-inline: 6px; }
+      .toolbar { padding: 5px; gap: 4px; }
+      .toolbar-row { gap: 3px; }
+      .toolbar a { padding: 9px 0; font-size: 12px; letter-spacing: -.04em; }
+      .toolbar button { flex-basis: 36px; width: 36px; }
       .timeline-section { margin-inline: -1px; padding: 21px 17px; border-radius: 20px; }
       .timeline-heading { grid-template-columns: 1fr; gap: 14px; }
       .deadline-card { min-width: 0; }
@@ -515,17 +526,21 @@
 
   <div class="toolbar-wrap" aria-label="빠른 이동">
     <nav class="toolbar">
-      <a href="#timeline">타임라인</a>
-      <a href="#reels-01-05">01–05</a>
-      <a href="#reels-06-10">06–10</a>
-      <a href="#reels-11-15">11–15</a>
-      <a href="#reels-16-20">16–20</a>
-      <a href="#reels-21-25">21–25</a>
-      <a href="#reels-26-30">26–30</a>
-      <a href="#reels-31-33">31–33</a>
-      <a href="#carousel">캐러셀 01–15</a>
-      <a href="https://projectrelay8.github.io/client-shooting-guide/" target="_blank" rel="noopener noreferrer">촬영 가이드 ↗</a>
-      <button type="button" onclick="window.print()" aria-label="인쇄 및 PDF 저장" title="인쇄 및 PDF 저장"><span aria-hidden="true">⎙</span></button>
+      <div class="toolbar-row">
+        <a href="#timeline">타임라인</a>
+        <a href="#carousel">캐러셀 01–15</a>
+        <a href="https://projectrelay8.github.io/client-shooting-guide/" target="_blank" rel="noopener noreferrer">촬영 가이드 ↗</a>
+        <button type="button" onclick="window.print()" aria-label="인쇄 및 PDF 저장" title="인쇄 및 PDF 저장"><span aria-hidden="true">⎙</span></button>
+      </div>
+      <div class="toolbar-row toolbar-row--reels" aria-label="릴스 번호">
+        <a href="#reels-01-05">01–05</a>
+        <a href="#reels-06-10">06–10</a>
+        <a href="#reels-11-15">11–15</a>
+        <a href="#reels-16-20">16–20</a>
+        <a href="#reels-21-25">21–25</a>
+        <a href="#reels-26-30">26–30</a>
+        <a href="#reels-31-33">31–33</a>
+      </div>
     </nav>
   </div>
 
@@ -536,11 +551,11 @@
         <div>
           <span class="kicker">Production timeline</span>
           <h2 id="timeline-title">콘텐츠 제작·업로드 타임라인</h2>
-          <p>릴스와 캐러셀는 10월 22일까지 꾸준히 업로드하며, 광고주 검수와 수정 대응은 전체 운영 기간 동안 상시 병행합니다.</p>
+          <p>릴스 33건과 캐러셀 15건은 10월 13일까지 모두 업로드하며, 광고주 검수와 수정 대응은 전체 운영 기간 동안 상시 병행합니다.</p>
         </div>
         <div class="deadline-card">
           <span>업로드 완료</span>
-          <strong>10월 22일</strong>
+          <strong>10월 13일</strong>
           <small>9월부터 캐러셀 병행</small>
         </div>
       </header>
